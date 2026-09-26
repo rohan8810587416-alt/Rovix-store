@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROVIX | Official Clothing Store</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,sans-serif;
+background:#0b0b0b;
+color:#fff;
+}
+header{
+position:sticky;
+top:0;
+z-index:10;
+background:#0b0b0bf2;
+border-bottom:1px solid #222;
+padding:15px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+.logo{
+font-size:27px;
+font-weight:900;
+letter-spacing:3px;
+}
+nav a{
+color:#fff;
+text-decoration:none;
+margin-left:18px;
+font-size:14px;
+}
+.hero{
+min-height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px 20px;
+background:
+radial-gradient(circle at center,#252525 0,#0b0b0b 55%);
+}
+.hero h1{
+font-size:65px;
+letter-spacing:8px;
+}
+.hero p{
+margin:18px 0 25px;
+color:#bbb;
+font-size:17px;
+}
+.btn{
+display:inline-block;
+background:#fff;
+color:#000;
+padding:13px 23px;
+border-radius:7px;
+text-decoration:none;
+font-weight:bold;
+border:0;
+cursor:pointer;
+}
+section{
+padding:55px 6%;
+}
+.title{
+text-align:center;
+font-size:32px;
+margin-bottom:30px;
+}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
+}
+.card{
+background:#151515;
+border:1px solid #272727;
+border-radius:12px;
+overflow:hidden;
+}
+.card img{
+width:100%;
+height:270px;
+object-fit:cover;
+background:#222;
+}
+.card-content{
+padding:17px;
+}
+.card h3{
+margin-bottom:8px;
+}
+.price{
+font-size:20px;
+font-weight:bold;
+margin:10px 0;
+}
+.old{
+text-decoration:line-through;
+color:#777;
+font-size:14px;
+margin-left:7px;
+}
+.buy{
+width:100%;
+margin-top:8px;
+}
+.about{
+max-width:800px;
+margin:auto;
+text-align:center;
+color:#bbb;
+line-height:1.7;
+}
+.contact{
+text-align:center;
+background:#111;
+}
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+border-top:1px solid #222;
+}
+.admin{
+background:#101010;
+border:1px solid #333;
+border-radius:12px;
+max-width:900px;
+margin:auto;
+padding:22px;
+}
+.admin input,.admin textarea,.admin select{
+width:100%;
+padding:12px;
+margin:7px 0 13px;
+border-radius:6px;
+border:1px solid #444;
+background:#181818;
+color:#fff;
+}
+.admin label{
+font-size:13px;
+color:#aaa;
+}
+.admin-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+.admin-products{
+margin-top:25px;
+}
+.admin-item{
+background:#181818;
+padding:15px;
+border:1px solid #333;
+border-radius:8px;
+margin-top:10px;
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+}
+.delete{
+background:#d33;
+color:#fff;
+border:0;
+padding:8px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+@media(max-width:600px){
+.hero h1{font-size:43px}
+nav a{margin-left:8px;font-size:12px}
+.admin-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">ROVIX</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#products">Shop</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+<div>
+<h1>ROVIX</h1>
+<p>Streetwear made for your everyday style.</p>
+<a href="#products" class="btn">SHOP NOW</a>
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+<h2 class="title">OUR COLLECTION</h2>
+<div class="products" id="productList"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2 class="title">ABOUT ROVIX</h2>
+<div class="about">
+<p>
+ROVIX is a modern clothing brand focused on stylish,
+comfortable and affordable streetwear. Explore our latest
+collection and find your everyday fit.
+</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+<h2 class="title">CONTACT US</h2>
+<p id="phoneText">WhatsApp: +91 00000 00000</p>
+<br>
+<a id="whatsappLink" class="btn" href="#" target="_blank">
+ORDER ON WHATSAPP
+</a>
+<br><br>
+<p id="instagramText">Instagram: @rovix</p>
+</section>
+
+<!-- ADMIN -->
+<section>
+<h2 class="title">STORE ADMIN</h2>
+
+<div class="admin">
+
+<h3>Add / Update Product</h3>
+<br>
+
+<label>Product Name</label>
+<input id="pName" placeholder="Example: ROVIX Oversized T-Shirt">
+
+<div class="admin-grid">
+
+<div>
+<label>Price</label>
+<input id="pPrice" type="number" placeholder="499">
+</div>
+
+<div>
+<label>MRP</label>
+<input id="pMrp" type="number" placeholder="999">
+</div>
+
+</div>
+
+<div class="admin-grid">
+
+<div>
+<label>Category</label>
+<select id="pCategory">
+<option>T-Shirt</option>
+<option>Shirt</option>
+<option>Hoodie</option>
+<option>Jeans</option>
+<option>Other</option>
+</select>
+</div>
+
+<div>
+<label>Colour</label>
+<input id="pColor" placeholder="Black">
+</div>
+
+</div>
+
+<label>Sizes</label>
+<input id="pSizes" placeholder="S, M, L, XL">
+
+<label>Stock</label>
+<input id="pStock" type="number" placeholder="10">
+
+<label>Product Image URL</label>
+<input id="pImage" placeholder="https://example.com/image.jpg">
+
+<label>Description</label>
+<textarea id="pDescription" rows="4"
+placeholder="Product description"></textarea>
+
+<button class="btn" onclick="addProduct()">ADD PRODUCT</button>
+
+<div class="admin-products">
+<h3>Your Products</h3>
+<div id="adminList"></div>
+</div>
+
+<hr style="border-color:#333;margin:30px 0">
+
+<h3>Store Details</h3>
+<br>
+
+<label>WhatsApp Number</label>
+<input id="storePhone" placeholder="919999999999">
+
+<label>Instagram Username</label>
+<input id="storeInstagram" placeholder="rovix">
+
+<button class="btn" onclick="saveStore()">SAVE STORE DETAILS</button>
+
+</div>
+</section>
+
+<footer>
+© 2026 ROVIX. All Rights Reserved.
+</footer>
+
+<script>
+
+let products = JSON.parse(localStorage.getItem("rovixProducts")) || [
+
+{
+name:"ROVIX Oversized T-Shirt",
+price:499,
+mrp:999,
+category:"T-Shirt",
+color:"Black",
+sizes:"S, M, L, XL",
+stock:10,
+image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
+description:"Premium oversized streetwear T-shirt."
+},
+
+{
+name:"ROVIX Classic T-Shirt",
+price:399,
+mrp:799,
+category:"T-Shirt",
+color:"White",
+sizes:"S, M, L, XL",
+stock:15,
+image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800",
+description:"Comfortable everyday classic T-shirt."
+}
+
+];
+
+let store = JSON.parse(localStorage.getItem("rovixStore")) || {
+phone:"910000000000",
+instagram:"rovix"
+};
+
+function saveProducts(){
+localStorage.setItem("rovixProducts",JSON.stringify(products));
+}
+
+function displayProducts(){
+
+let list=document.getElementById("productList");
+
+list.innerHTML="";
+
+products.forEach((p,index)=>{
+
+list.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.image}" alt="${p.name}">
+
+<div class="card-content">
+
+<h3>${p.name}</h3>
+
+<p>${p.category} • ${p.color}</p>
+
+<div class="price">
+₹${p.price}
+<span class="old">₹${p.mrp}</span>
+</div>
+
+<p>Sizes: ${p.sizes}</p>
+
+<p style="color:#aaa;margin-top:7px">
+${p.description}
+</p>
+
+<a
+class="btn buy"
+href="https://wa.me/${store.phone}?text=${encodeURIComponent(
+"Hello ROVIX, I want to order: "+p.name+
+" | Price: ₹"+p.price+
+" | Size: "
+)}"
+target="_blank">
+ORDER NOW
+</a>
+
+</div>
+</div>
+
+`;
+
+});
+
+displayAdmin();
+
+}
+
+function addProduct(){
+
+let product={
+
+name:document.getElementById("pName").value,
+
+price:document.getElementById("pPrice").value,
+
+mrp:document.getElementById("pMrp").value,
+
+category:document.getElementById("pCategory").value,
+
+color:document.getElementById("pColor").value,
+
+sizes:document.getElementById("pSizes").value,
+
+stock:document.getElementById("pStock").value,
+
+image:document.getElementById("pImage").value,
+
+description:document.getElementById("pDescription").value
+
+};
+
+if(!product.name || !product.price){
+
+alert("Product name aur price bharna zaroori hai.");
+
+return;
+
+}
+
+products.push(product);
+
+saveProducts();
+
+displayProducts();
+
+alert("Product added successfully!");
+
+}
+
+function deleteProduct(index){
+
+if(confirm("Delete this product?")){
+
+products.splice(index,1);
+
+saveProducts();
+
+displayProducts();
+
+}
+
+}
+
+function displayAdmin(){
+
+let list=document.getElementById("adminList");
+
+list.innerHTML="";
+
+products.forEach((p,index)=>{
+
+list.innerHTML+=`
+
+<div class="admin-item">
+
+<div>
+
+<strong>${p.name}</strong><br>
+
+₹${p.price} | Stock: ${p.stock}
+
+</div>
+
+<button class="delete"
+onclick="deleteProduct(${index})">
+DELETE
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function saveStore(){
+
+let phone=document.getElementById("storePhone").value;
+
+let instagram=document.getElementById("storeInstagram").value;
+
+if(phone) store.phone=phone;
+
+if(instagram) store.instagram=instagram;
+
+localStorage.setItem("rovixStore",JSON.stringify(store));
+
+document.getElementById("phoneText").innerText=
+"WhatsApp: +"+store.phone;
+
+document.getElementById("instagramText").innerText=
+"Instagram: @"+store.instagram;
+
+document.getElementById("whatsappLink").href=
+"https://wa.me/"+store.phone;
+
+alert("Store details saved!");
+
+displayProducts();
+
+}
+
+document.getElementById("storePhone").value=store.phone;
+document.getElementById("storeInstagram").value=store.instagram;
+
+document.getElementById("phoneText").innerText=
+"WhatsApp: +"+store.phone;
+
+document.getElementById("instagramText").innerText=
+"Instagram: @"+store.instagram;
+
+document.getElementById("whatsappLink").href=
+"https://wa.me/"+store.phone;
+
+displayProducts();
+
+</script>
+
+</body>
+</html>
